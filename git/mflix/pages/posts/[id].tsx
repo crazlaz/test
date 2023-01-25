@@ -110,7 +110,7 @@ export default function EditPost({ post: { _id, title, content } }: ContentPageP
     }
 
     // no such post exists
-    if (!title && !content && !id && process.browser) {
+    if (!title && !content  && process.browser) {
         return window.location.href = '/';
     }
 
