@@ -1,19 +1,19 @@
 import clientPromise from "../lib/mongodb";
 
-export default function Movies({ movies }) {
+export default function comments({ comments }) {
     return (
         <div>
-            <h1>Top 20 Movies of All Time</h1>
+            <h1>Top 20 comments of All Time</h1>
             <p>
                 <small>(According to Metacritic)</small>
             </p>
             <ul>
-                {movies.map((movie) => (
+                {comments.map((comment) => (
                     <li>
-                        <h2>{movie.title}</h2>
-                        <h3>{movie.metacritic}</h3>
-                        <p>{movie.plot}</p>
-                        <p>{movie.cast}</p>
+                        <h2>{comment.name}</h2>
+                        <h3>{comment.email}</h3>
+                        <p>{comment.date}</p>
+                        <p>{comment.text}</p>
                     </li>
                 ))}
             </ul>
@@ -26,15 +26,15 @@ export async function getServerSideProps() {
         const client = await clientPromise;
         const db = client.db("sample_mflix");
 
-        const movies = await db
-            .collection("movies")
+        const comments = await db
+            .collection("comments")
             .find({})
             .sort({ metacritic: -1 })
             .limit(20)
             .toArray();
 
         return {
-            props: { movies: JSON.parse(JSON.stringify(movies)) },
+            props: { comments: JSON.parse(JSON.stringify(comments)) },
         };
     } catch (e) {
         console.error(e);
