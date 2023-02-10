@@ -51,6 +51,4 @@ function handleClickChange() {
   );
 }
 
-function sendMessage(message) {
-  // ...
-}
+
