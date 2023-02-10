@@ -18,7 +18,7 @@ function handleClickChange() {
     <form onSubmit={(e) => {
       e.preventDefault();
       setIsSent(true);
-      sendMessage(message);
+      
     }}>
       <textarea
         placeholder="Message"
